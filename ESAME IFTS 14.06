@@ -1,0 +1,118 @@
+#Una azienda manufatturiera si è dotata di una stampante 3D per la realizzazione di prototipi.
+#Per ottimizzare le attività legate alla stampante 3d ha deciso di dotarsi di un software per la gestione e catalogazione dei modelli utilizzabili nella stampante stessa.
+# I modelli dovranno essere catalogati in base al dipartimento aziendale che li ha prodotti.
+# L'azienda ha inoltre manifestato l'esigenza di volere anche una manutenzione successiva di questo software
+
+#PUNTO1 Progettare e realizzare in Python, mediante tecniche di programmazione orientate agli oggetti, tale programma. Il programma dovrà in particolare poter gestire (inserimento, modifica, cancellazione) i modelli 3D prodotti con tutti i dettagli necessari (nome del modello, descrizione) nei diversi dipartimenti, consentire una ricerca per nome e una stampa a video di tutti i modelli presenti per i diversi dipartimenti.
+#PUNTO2 Estendere il software aggiungendo la possibilità di salvare i dati in un disco rigido (SQLITE,ORM ecc)
+#PUNTO3 Creazione di un repository su GITHUB
+
+#PUNTO1
+class modello ():
+    def __init__(self, nome_modello, descrizione,modifica):
+        self.nome_modello = nome_modello
+        self.descrizione = descrizione
+        self.modifica = modifica
+        
+    
+        def modifica_nome_modello(self, nome_modello):
+            self.nome_modello = nome_modello
+            print("modello modificato")
+
+        def stampa_info(self):
+            print("il modello %s, di tipo %s, è stato modificato %s") % (self.nome_modello, self.descrizione self.modifica))
+
+
+class dipartimento ():
+    def __init__(self, nome):
+        self.nome = nome
+        self.modello = list()
+
+    def aggiungi_modello(self, modello):
+        self.modello.append(modello)
+        print("modello aggiunto")
+
+    def cancella_modello(self, modello):
+        if modello in self.modello:
+        self.modello.delete(modello)
+        print("modello cancellato")
+    else:
+        print("modello non trovato")
+
+    def cerca_modello(self, descrizione):
+        for modello in self.modello:
+            if modello.descrizione == descrizione:
+                print("ecco i modelli trovati:")
+                modello.stampa_info()
+
+    def stampa_dipartimento(self):
+        for modello in self.modello:
+            modello.stampa_info()
+
+
+#creazione lista con tutti i modelli
+tutti = dipartimento("dipartimento")
+
+stampanteA = modello("1x", "stampanteA", "marco")
+stampanteB = modello("2x", "stampanteB", "ale")
+tutti.aggiungi_modello(stampanteA)
+tutti.aggiungi_modello(stampanteB)
+tutti.stampa_dipartimento()
+tutti.nome_modello("StampanteA")
+
+#PUNTO2
+import sqlite3
+
+conn = sqlite3.connect("modello.db")
+curs = conn.cursor()
+
+try:
+    curs.execute("DROP table modello")
+    curs.execute("DROP table dipartimento")
+except:
+    pass
+
+curs.execute("CREATE table modello (riferimento char(30), nome_modello char(30), descrizione char(30), modifica char(30), dipartimento char(30))")
+
+ class dipartimento ():
+    def __init__(self, nome):
+        self.nome=nome
+        self.modello=list()
+        self.cursore=cursore
+
+    def aggiungi_modello(self, modello):
+        self.modello.append(modello)
+        print("modello aggiunto")
+        row = (modello.nome_modello, descrizione, modifica, self.nome)
+        self.cursore.execute("insert into modello values(?, ?, ?, ?)", row)
+        print("modello aggiunto")
+
+    def cancella_modello(self, nome_modello):
+        if modello in self.modello:
+        self.modello.delete(modello)
+        self.cursore.execute("delete from modello where nome_modello = ?",(modello.nome_modello,))
+
+    def cerca_modello(self, descrizione):
+        for modello in self.modello:
+            if modello.descrizione == descrizione:
+                print("ecco i modelli trovati:")
+                modello.stampa_info()
+            print("dal database:")
+            self.cursore.execute("SELECT * FROM modello WHERE descrizione = ? (modello.descrizione ? "(immobile,descrizione, ))
+    for row in self.cursore.fetchall():
+    print(row)
+
+
+    def stampa_dipartimento(self):
+        for modello in self.modello:
+            modello.stampa_info()
+        print("dal database")
+            self.cursore.execute("SELECT * FROM modello")
+            for row in self.cursore.fetchall():
+                print(row)
+
+
+
+
+
+
